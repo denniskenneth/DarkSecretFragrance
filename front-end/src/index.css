@@ -6,3 +6,8 @@ main {
 div .card-img, .card-img-top {
   height: 8rem;
 }
+
+img {
+  /* height: 20rem;
+  width: auto; */
+}
