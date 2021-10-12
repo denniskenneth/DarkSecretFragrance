@@ -1,3 +1,8 @@
 main {
-  height: 80vh;
+  height: 90vh;
+  position: relative;
+}
+
+div .card-img, .card-img-top {
+  height: 8rem;
 }
