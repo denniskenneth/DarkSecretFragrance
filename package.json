@@ -12,6 +12,13 @@
   "author": "Dennis Kenneth <dennyify123@gmail.com> X WeJapa(Team 6)",
   "license": "WeJapa (Team 6)",
   "scripts": {
-    "start": "node back-end/server"
+    "start": "node back-end/server",
+    "server": "nodemon back-end/server",
+    "client": "cd front-end && yarn start",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^6.3.0",
+    "nodemon": "^2.0.13"
   }
 }
