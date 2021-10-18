@@ -20,10 +20,38 @@ const importData = async () => {
 
     const createdUsers = await User.insertMany(users);
 
-    const adminUser = createdUser[0]._id;
+    const adminUser = createdUsers[0]._id;
 
-    const sampleProducts = products.map((products) => {
+    const sampleProducts = products.map((product) => {
       return { ...product, user: adminUser };
     });
-  } catch (error) {}
+
+    await Product.insertMany(sampleProducts);
+
+    console.log("Data Imported!".green.inverse);
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`.red.inverse);
+    process.exit(1);
+  }
 };
+
+const destoryData = async () => {
+  try {
+    await Order.deleteMany();
+    await Product.deleteMany();
+    await User.deleteMany();
+
+    console.log("Data Destoryed!".red.inverse);
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`.red.inverse);
+    process.exit(1);
+  }
+};
+
+if (process.argv[2] === "-d") {
+  destoryData();
+} else {
+  importData();
+}
