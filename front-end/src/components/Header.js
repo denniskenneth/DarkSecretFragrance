@@ -1,31 +1,35 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Container } from "react-bootstrap";
-// import logo from "../Res/tabIcon.png";
+import logo from "../assets/tabIcon.png";
 
 const Header = () => {
   return (
     <header>
-      <Navbar bg='light' expand='lg' collapseOnSelect>
+      <Navbar bg="light" expand="lg" collapseOnSelect>
         <Container>
-          <LinkContainer to='/'>
+          <LinkContainer to="/">
             <Navbar.Brand>
-              <img src='#' alt='Logo' />
+              <img
+                src={logo}
+                alt="Logo"
+                style={{ height: "80px", width: "80px" }}
+              />
             </Navbar.Brand>
           </LinkContainer>
 
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto'>
-              <LinkContainer to='/cart'>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i>Cart
+                  <i className="fas fa-shopping-cart"></i>Cart
                 </Nav.Link>
               </LinkContainer>
 
-              <LinkContainer to='/login'>
+              <LinkContainer to="/login">
                 <Nav.Link>
-                  <i className='fas fa-user'></i>Sign In
+                  <i className="fas fa-user"></i>Sign In
                 </Nav.Link>
               </LinkContainer>
             </Nav>

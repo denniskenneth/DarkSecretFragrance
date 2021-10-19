@@ -24,10 +24,10 @@ const ProductScreen = ({ match }) => {
     };
 
     fetchProduct();
-  }, []);
+  }, [match.params.id]);
   return (
     <>
-      <Link className='btn btn-dark my-3' to='/'>
+      <Link className="btn btn-dark my-3" to="/">
         Go Back
       </Link>
       <Row>
@@ -36,12 +36,12 @@ const ProductScreen = ({ match }) => {
         </Col>
 
         <Col md={3}>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroupItem>
               <h3>{product.name}</h3>
             </ListGroupItem>
             <ListGroupItem>
-              <div className='my-3'>
+              <div className="my-3">
                 {product.rating} from {product.numReviews} reviews
               </div>
             </ListGroupItem>
@@ -51,7 +51,7 @@ const ProductScreen = ({ match }) => {
 
         <Col md={3}>
           <Card>
-            <ListGroup variant='flush'>
+            <ListGroup variant="flush">
               <ListGroup.Item>
                 <Row>
                   <Col>Price:</Col>
@@ -72,8 +72,8 @@ const ProductScreen = ({ match }) => {
 
               <ListGroup.Item>
                 <Button
-                  className='btn-block btn-dark'
-                  type='button'
+                  className="btn-block btn-dark"
+                  type="button"
                   disabled={product.countInStock === 0}
                 >
                   Add To Cart
