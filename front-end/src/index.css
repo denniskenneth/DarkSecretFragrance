@@ -7,7 +7,10 @@ div .card-img, .card-img-top {
   height: 8rem;
 }
 
-img {
-  /* height: 20rem;
-  width: auto; */
+h3 {
+  padding: 1rem;
+}
+
+.rating span {
+  margin: 0.1rem;
 }
