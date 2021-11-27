@@ -6,7 +6,8 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 
-import { listProductDetails } from '../actions/productActions';
+import { listProductDetails, updateProduct } from '../actions/productActions';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -18,30 +19,53 @@ const ProductEditScreen = ({ match, history }) => {
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
-  const [uploading, setUploading] = useState(false);
+  // const [uploading, setUploading] = useState(false);
 
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = productUpdate;
+
   useEffect(() => {
-    if (!product.name || product._id !== productId) {
-      dispatch(listProductDetails(productId));
+    if (successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+      history.push('/admin/productlist');
     } else {
-      setName(product.name);
-      setPrice(product.price);
-      setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setDescription(product.description);
+      if (!product.name || product._id !== productId) {
+        dispatch(listProductDetails(productId));
+      } else {
+        setName(product.name);
+        setPrice(product.price);
+        setImage(product.image);
+        setBrand(product.brand);
+        setCategory(product.category);
+        setCountInStock(product.countInStock);
+        setDescription(product.description);
+      }
     }
-  }, [dispatch, history, productId, product]);
+  }, [dispatch, history, productId, product, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // dispatch(updateUser({ _id: userId, name, email, isAdmin }));
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        brand,
+        category,
+        description,
+        countInStock,
+      })
+    );
   };
 
   return (
@@ -51,8 +75,8 @@ const ProductEditScreen = ({ match, history }) => {
       </Link>
       <FormContainer>
         <h1>Edit Product</h1>
-        {loading && <Loader />}
-        {error && <Message variant='danger'>{error}</Message>}
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant='danger'>{error}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
