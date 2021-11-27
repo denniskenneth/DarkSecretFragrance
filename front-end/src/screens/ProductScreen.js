@@ -29,7 +29,7 @@ const ProductScreen = ({ history, match }) => {
   }, [dispatch, match])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=$qty`)
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
   }
 
   return (
@@ -89,18 +89,19 @@ const ProductScreen = ({ history, match }) => {
                    <Row>
                      <Col>Qty</Col>
                      <Col>
-                        <Form.Control 
-                          as="select" 
-                          value={qty} 
-                          onChange={(e) => setQty(e.target.value)}
+                     <Form.Control
+                            as='select'
+                            value={qty}
+                            onChange={(e) => setQty(e.target.value)}
                           >
-                          {
-                          [...Array(product.counInStock).keys()].map((x) => (
-                            <option key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </option>
-                          ))}
-                        </Form.Control>
+                            {[...Array(product.countInStock).keys()].map(
+                              (x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              )
+                            )}
+                          </Form.Control>
                      </Col>
                    </Row>
                   </ListGroup.Item>
