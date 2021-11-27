@@ -1,22 +1,26 @@
-import express from "express";
-import dotenv from "dotenv";
-import products from "./data/products.js";
-import connectDB from "./config/db.js";
-import colors from "colors";
-import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import express from 'express';
+import dotenv from 'dotenv';
+import products from './data/products.js';
+import connectDB from './config/db.js';
+import colors from 'colors';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
-import productRoutes from "./routes/productRoutes.js";
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 connectDB();
 
 dotenv.config();
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("API!, is running bitch....");
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('API!, is running bitch....');
 });
 
-app.use("/api/products", productRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 // ERROR HANDLER
 app.use(notFound);
