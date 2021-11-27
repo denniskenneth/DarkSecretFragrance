@@ -19,26 +19,35 @@ const PaymentScreen = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(savePaymentMethod({paymentMethod}))
-    history.push('/placeOrder')
+    dispatch(savePaymentMethod(paymentMethod))
+    history.push('/placeorder')
   }
-return <FormContainer>
+return (
+  <FormContainer>
     <CheckoutSteps step1 step2 step3 />
     <h1>Payment Method</h1>
     <Form onSubmit={submitHandler}>
-        <Form.Group>
-            <Form.Label as='Legend'>Select Method</Form.Label>
-        <Col>
-            <Form.Check 
-            type='radio' 
-            label='PayPal or Credit Card' 
-            id='PayPal' 
-            name='paymentMethod' 
-            value='PayPal' 
-            checked
-            onChange={(e) => setPaymentMethod(e.target.value)} 
-            ></Form.Check>  
-        </Col>
+    <Form.Group>
+          <Form.Label as='legend'>Select Method</Form.Label>
+          <Col>
+            <Form.Check
+              type='radio'
+              label='PayPal or Credit Card'
+              id='PayPal'
+              name='paymentMethod'
+              value='PayPal'
+              checked
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            ></Form.Check>
+            {/* <Form.Check
+              type='radio'
+              label='Stripe'
+              id='Stripe'
+              name='paymentMethod'
+              value='Stripe'
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            ></Form.Check> */}
+          </Col>
         </Form.Group>
 
 
@@ -46,7 +55,8 @@ return <FormContainer>
           Continue
         </Button>
     </Form>
-</FormContainer>
+  </FormContainer>
+)
  }
 
  export default PaymentScreen

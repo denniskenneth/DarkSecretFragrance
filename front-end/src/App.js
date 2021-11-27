@@ -1,3 +1,4 @@
+import React from 'react'
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -27,9 +28,9 @@ const App = () => {
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />
-          <Route path='/payment' component={PaymentScreen} exact />
-          <Route path='/placeorder' component={PlaceOrderScreen} exact />
-          <Route path='/shipping' component={ShippingScreen} exact />
+          <Route path='/payment' component={PaymentScreen}  />
+          <Route path='/placeorder' component={PlaceOrderScreen}  />
+          <Route path='/shipping' component={ShippingScreen}  />
           <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/admin/productlist' component={ProductListScreen} />
