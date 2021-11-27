@@ -9,6 +9,10 @@ import ShippingScreen from './screens/ShippingScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import UserListScreen from './screens/UserLIstScreen';
+import UserEditScreen from './screens/UserEditScreen';
+import ProductListScreen from './screens/ProductListScreen';
+
 const App = () => {
   return (
     <Router className='App'>
@@ -23,7 +27,10 @@ const App = () => {
           <Route path='/shipping' component={ShippingScreen} exact />
           <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
+          <Route path='/admin/productlist' component={ProductListScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
+          <Route path='/admin/userList' component={UserListScreen} />
+          <Route path='/admin/user/:id/edit' component={UserEditScreen} />
         </Container>
       </main>
 
