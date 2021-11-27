@@ -29,13 +29,8 @@ const ProductScreen = ({ history, match }) => {
   }, [dispatch, match]);
 
   const addToCartHandler = () => {
-<<<<<<< HEAD
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
-=======
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
-  }
->>>>>>> 03b3308fe2cf6f605b9fde6ec4492d74359c629d
 
   return (
     <>
