@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 // import { listUsers } from '../actions/userActions'; // deleteUser
-import { listProducts, deleteProduct } from '../actions/productActions';
+import { listProducts } from '../actions/productActions';
 
 const UserListScreen = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -69,7 +69,7 @@ const UserListScreen = ({ match, history }) => {
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.name}</td>
-                <td>${product.price}</td>
+                <td>$ {product.price}</td>
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
                 <td>
