@@ -4,12 +4,14 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+
 import {
   listProducts,
   deleteProduct,
   createProduct,
 } from '../actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
+
 
 const ProductListScreen = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -101,7 +103,7 @@ const ProductListScreen = ({ match, history }) => {
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.name}</td>
-                <td>${product.price}</td>
+                <td>$ {product.price}</td>
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
                 <td>

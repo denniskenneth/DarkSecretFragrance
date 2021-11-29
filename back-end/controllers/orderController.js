@@ -1,8 +1,8 @@
-import Order from '../models/orderModel.js';
 import asyncHandler from 'express-async-handler';
+import Order from '../models/orderModel.js';
 
 //PURPOSE:  Create new order
-// ROUTE: POST/api/orders
+// ROUTE: POST /api/orders
 // ACCESS: Private
 const addOrderItems = asyncHandler(async (req, res) => {
   const {
@@ -33,7 +33,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
     const createdOrder = await order.save();
 
-    req.status(201).json(createdOrder);
+    res.status(201).json(createdOrder);
   }
 });
 

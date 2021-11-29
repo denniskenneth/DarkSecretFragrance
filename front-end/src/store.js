@@ -17,8 +17,17 @@ import {
   userListReducer,
   userDeleteReducer,
   userUpdateReducer,
-} from './reducers/userReducers';
+
+} from './reducers/userReducers'
+
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+} from './reducers/orderReducers'
+  
 import { orderCreateReducer } from './reducers/orderReducers';
+
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -31,21 +40,22 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
-
-  orderCreate: orderCreateReducer,
-
   userList: userListReducer,
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
 });
+
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
-  : [];
+  : []
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
-  : null;
+  : null
 
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   ? JSON.parse(localStorage.getItem('shippingAddress'))
@@ -57,14 +67,14 @@ const initialState = {
     shippingAddress: shippingAddressFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
-};
+}
 
-const middleware = [thunk];
+const middleware = [thunk]
 
 const store = createStore(
   reducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
-);
+)
 
-export default store;
+export default store
