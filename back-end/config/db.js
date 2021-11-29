@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -10,7 +10,7 @@ const connectDB = async () => {
     const conn = await mongoose.connect(DB_URI, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-      //   useCreateIndex: true,
+      // useCreateIndex: true,
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
   } catch (error) {
