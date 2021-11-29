@@ -15,26 +15,27 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProductDetails } from '../actions/productActions';
+import Rating from '../components/Rating';
 
 const ProductScreen = ({ history, match }) => {
-  const [qty, setQty] = useState(1)
- 
+  const [qty, setQty] = useState(1);
+
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
-    dispatch(listProductDetails(match.params.id))
-  }, [dispatch, match])
+    dispatch(listProductDetails(match.params.id));
+  }, [dispatch, match]);
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=$qty`)
-  }
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
 
   return (
     <>
-      <Link className='btn btn-dark my-3' to='/'>
+      <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
       {loading ? (
@@ -49,14 +50,16 @@ const ProductScreen = ({ history, match }) => {
 
           <Col md={3}>
             <ListGroup variant='flush'>
-              <ListGroupItem>
+              <ListGroup.Item>
                 <h3>{product.name}</h3>
-              </ListGroupItem>
-              <ListGroupItem>
-                <div className='my-3'>
-                  {product.rating} from {product.numReviews} reviews
-                </div>
-              </ListGroupItem>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Rating
+                  value={product.rating}
+                  text={`${product.numReviews} reviews`}
+                />
+              </ListGroup.Item>
+              <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
               <ListGroup.Item>
                 Description: {product.description}
               </ListGroup.Item>
@@ -70,7 +73,7 @@ const ProductScreen = ({ history, match }) => {
                   <Row>
                     <Col>Price:</Col>
                     <Col>
-                      <strong>$ {product.price}</strong>
+                      <strong>¢ {product.price}</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -86,26 +89,25 @@ const ProductScreen = ({ history, match }) => {
 
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
-                   <Row>
-                     <Col>Qty</Col>
-                     <Col>
-                        <Form.Control 
-                          as="select" 
-                          value={qty} 
+                    <Row>
+                      <Col>Qty</Col>
+                      <Col>
+                        <Form.Control
+                          as='select'
+                          value={qty}
                           onChange={(e) => setQty(e.target.value)}
-                          >
-                          {
-                          [...Array(product.counInStock).keys()].map((x) => (
+                        >
+                          {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}
                             </option>
                           ))}
                         </Form.Control>
-                     </Col>
-                   </Row>
+                      </Col>
+                    </Row>
                   </ListGroup.Item>
                 )}
-                 
+
                 <ListGroup.Item>
                   <Button
                     onClick={addToCartHandler}
