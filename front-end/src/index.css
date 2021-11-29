@@ -2,6 +2,12 @@ main {
   min-height: 90vh;
   /* position: relative; */
 }
+div.card-body a {
+  text-decoration: none;
+}
+div.card-body a .card-title {
+  /* line-height: 2rem; */
+}
 
 div .card-img, .card-img-top {
   height: 8rem;
@@ -22,4 +28,24 @@ h2 {
 }
 .rating span {
   margin: 0.1rem;
+}
+img {
+  height: 4rem;
+  width: 7rem;
+}
+
+a.btn.btn-light.my-3:hover{
+  background-color: black;
+  color: white;
+}
+
+div.nav-item a {
+  color: black
+}
+
+div.nav-item a:hover {
+  text-decoration: underline;
+  text-decoration-color: black;
+  text-decoration-thickness: 0.28rem;
+  color: gray;
 }
