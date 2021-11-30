@@ -32,7 +32,7 @@ const Header = () => {
             <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className='ms-auto'>
               <LinkContainer to='/cart'>
-                <Nav.Link>
+                <Nav.Link to='https://www.instagram.com/darksecretsfragrances/'>
                   <i className='fas fa-shopping-cart'></i>Cart
                 </Nav.Link>
               </LinkContainer>
