@@ -4,7 +4,7 @@ import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listOrders } from '../actions/orderActions';
+import { listMyOrders } from '../actions/orderActions';
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const OrderListScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listOrders());
+      dispatch(listMyOrders());
     } else {
       history.push('/login');
     }
@@ -49,7 +49,7 @@ const OrderListScreen = ({ history }) => {
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
+                <td>$ {order.totalPrice}</td>
                 <td>
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)

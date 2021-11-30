@@ -25,6 +25,7 @@ import {
   USER_UPDATE_FAIL,
   USER_UPDATE_REQUEST,
 } from '../constants/userConstants';
+import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -70,6 +71,8 @@ export const logout = () => (dispatch) => {
   // dispatch({ type: ORDER_LIST_MY_RESET })
   dispatch({ type: USER_LIST_RESET });
   // document.location.href = '/login'
+  dispatch({ type: USER_DETAILS_RESET})
+  dispatch({ type: ORDER_LIST_MY_RESET })
 };
 
 export const register = (name, email, password) => async (dispatch) => {

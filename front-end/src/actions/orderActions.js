@@ -9,12 +9,12 @@ import {
   ORDER_PAY_FAIL,
   ORDER_PAY_SUCCESS,
   ORDER_PAY_REQUEST,
-  ORDER_LIST_REQUEST,
-  ORDER_LIST_SUCCESS,
-  ORDER_LIST_FAIL,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_FAIL,
   ORDER_DELIVER_REQUEST,
+  ORDER_LIST_MY_REQUEST,
+  ORDER_LIST_MY_SUCCESS,
+  ORDER_LIST_MY_FAIL,
 } from '../constants/orderConstants';
 import { logout } from './userAction';
 
@@ -166,10 +166,10 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
   }
 };
 
-export const listOrders = () => async (dispatch, getState) => {
+export const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: ORDER_LIST_REQUEST,
+      type: ORDER_LIST_MY_REQUEST,
     });
 
     const {
@@ -182,10 +182,10 @@ export const listOrders = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/orders`, config);
+    const { data } = await axios.get(`/api/orders/myorders`, config);
 
     dispatch({
-      type: ORDER_LIST_SUCCESS,
+      type: ORDER_LIST_MY_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -197,7 +197,7 @@ export const listOrders = () => async (dispatch, getState) => {
     //   dispatch(logout())
     // }
     dispatch({
-      type: ORDER_LIST_FAIL,
+      type: ORDER_LIST_MY_FAIL,
       payload: message,
     });
   }
